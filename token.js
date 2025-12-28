@@ -23,7 +23,7 @@ const qs = require('querystring');
         client_id: process.env.INSTAGRAM_APP_ID,
         client_secret: process.env.INSTAGRAM_APP_SECRET,
         grant_type: 'authorization_code',
-        redirect_uri: "https://cd8b144ef946.ngrok-free.app/auth/callback",
+        redirect_uri: "https://insta-project-ten.vercel.app/auth/callback",
         code: authCode
       }),
       {
