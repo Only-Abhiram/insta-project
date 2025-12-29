@@ -89,16 +89,15 @@ app.get('/auth/callback', async (req, res) => {
   try {
   
     console.log(code);
-    res.status(200).send('Code received');
-    // const { instagramUserId, accessToken , expiresIn } = await getInstagramLongLivedToken(code);
-    // console.log('Instagram User ID: ', instagramUserId);
-    // console.log('Access Token(Long Lived): ', accessToken);
-    // console.log('Expires In: ', expiresIn);
+    const { instagramUserId, accessToken , expiresIn } = await getInstagramLongLivedToken(code);
+    console.log('Instagram User ID: ', instagramUserId);
+    console.log('Access Token(Long Lived): ', accessToken);
+    console.log('Expires In: ', expiresIn);
 
-    // console.log('Instagram connected successfully ✅');
+    console.log('Instagram connected successfully ✅');
     // put them in the database
     // TODO: Redirect to dashboard
-    // res.redirect('https://www.google.com')
+    res.redirect('https://www.google.com')
     // res.redirect('/success.html');
 
   } catch (err) {

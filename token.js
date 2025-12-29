@@ -10,22 +10,21 @@ const qs = require('querystring');
     // ----------------------------------
     // STEP 1: auth code -> short-lived token
     // ----------------------------------
+    const params = new URLSearchParams();
+    params.append("client_id", process.env.INSTAGRAM_APP_ID);
+    params.append("client_secret", process.env.INSTAGRAM_APP_SECRET);
+    params.append("grant_type", "authorization_code");
+    params.append("redirect_uri", "https://insta-project-ten.vercel.app/auth/callback");
+    params.append("code", authCode);
     console.log({
-        client_id: process.env.INSTAGRAM_APP_ID,
-        client_secret: process.env.INSTAGRAM_APP_SECRET,
-        grant_type: 'authorization_code',
-        redirect_uri: process.env.INSTAGRAM_REDIRECT_URI,
-        code: authCode
-      })
-    const shortTokenResponse = await axios.post(
-      'https://api.instagram.com/oauth/access_token',
-      qs.stringify({
         client_id: process.env.INSTAGRAM_APP_ID,
         client_secret: process.env.INSTAGRAM_APP_SECRET,
         grant_type: 'authorization_code',
         redirect_uri: "https://insta-project-ten.vercel.app/auth/callback",
         code: authCode
-      }),
+      })
+    const shortTokenResponse = await axios.post(
+      'https://api.instagram.com/oauth/access_token',params.toString(),
       {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
