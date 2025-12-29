@@ -89,7 +89,7 @@ app.get('/auth/callback', async (req, res) => {
   try {
   
     console.log(code);
-
+    res.status(200).send('Code received');
     // const { instagramUserId, accessToken , expiresIn } = await getInstagramLongLivedToken(code);
     // console.log('Instagram User ID: ', instagramUserId);
     // console.log('Access Token(Long Lived): ', accessToken);
