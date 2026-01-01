@@ -33,24 +33,26 @@ const qs = require('querystring');
     );
     console.log(shortTokenResponse.data);
 
-    // const shortTokenData = shortTokenResponse.data.data[0];
+    const shortTokenData = shortTokenResponse.data;
 
-    // const shortLivedToken = shortTokenData.access_token;
-    // const instagramUserId = shortTokenData.user_id;
-    // console.log('Short Lived Token: ', shortLivedToken);
+    const shortLivedToken = shortTokenData.access_token;
+    const instagramUserId = shortTokenData.user_id;
+
     // // ----------------------------------
     // // STEP 2: short-lived -> long-lived token
     // // ----------------------------------
-    // const longTokenResponse = await axios.get(
-    //   'https://graph.instagram.com/access_token',
-    //   {
-    //     params: {
-    //       grant_type: 'ig_exchange_token',
-    //       client_secret: process.env.INSTAGRAM_APP_SECRET,
-    //       access_token: shortLivedToken
-    //     }
-    //   }
-    // );
+
+    const longTokenResponse = await axios.get(
+      'https://graph.instagram.com/access_token',
+      {
+        params: {
+          grant_type: 'ig_exchange_token',
+          client_secret: process.env.INSTAGRAM_APP_SECRET,
+          access_token: shortLivedToken
+        }
+      }
+    );
+    console.log(longTokenResponse.data);
 
     return {
       instagramUserId: instagramUserId,
